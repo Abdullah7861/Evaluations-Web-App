@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .user-card {
+            width: 300px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+
+        .user-card h3 {
+            margin-top: 0;
+        }
+
+        .user-card p {
+            margin: 0;
+        }
+
+        .user-card .btn-container {
+            margin-top: 10px;
+        }
+
+        .user-card .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .user-card .btn.delete {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>User List</h1>
+    {% for user in users %}
+    <div class="user-card">
+        <h3>{{ user.username }}</h3>
+        <p>Password: {{ user.password }}</p>
+        <p>User Id: {{user.id}}</p>
+        <div class="btn-container">
+            <form action="/delete_user" method="POST">
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <button type="submit">Delete</button>
+              </form>
+              <form action="/edit_user" method="POST">
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <label for="username">Username</label>
+                <input type="text" name="username" required>
+                <label for="password">Password</label>
+                <input type="text" name="password" required>
+                <button type="submit">Edit</button>
+              </form>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>

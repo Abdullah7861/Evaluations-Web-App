@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Admin Page</title>
+  <style>
+    /* CSS styles for the admin page */
+    /* CSS styles for the admin page */
+
+body {
+  background-color: #ffffff;
+  padding-top: 0;
+}
+
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.admin-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.admin-card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  width: 400px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  border: 2px hidden;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.admin-label {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.admin-value {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.admin-button {
+  width: 100px;
+  height: 50px;
+  background-color: royalblue;
+  font-size: 15px;
+  font-family: Calibri;
+  color: whitesmoke;
+  border-radius: 5px;
+  border-style: hidden;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+
+/* Media query for responsive design */
+@media screen and (max-width: 600px) {
+  .admin-card {
+    width: 300px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="admin-container">
+    <div class="admin-title">Admin Page</div>
+    
+    <div class="admin-card">
+        <form action="/admin/users", method="GET">
+            <button class="admin-button" type="submit">See Users</button>
+        </form>
+        <form action="/admin/download_evaluations", method="GET">
+            <button class="admin-button" type="submit">Download Evaluations</button>
+    </form>
+</div>
+    <div class="admin-card">
+        <form action="/admin/create_user", class="admin-form",  method="POST">
+            <h3>Create a new User</h3>
+            <label for="username">Username</label>
+            <input type="text" name="username" required>
+            <label for="password">Password</label>
+            <input type="text" name="password" required>
+            <button class="admin-button" type="submit">Create User</button>
+        </form>
+    </div>
+    <div class="admin-card">
+      <h3>Upload File</h3>
+    <form action="/upload_zip" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".zip">
+        <input type="submit" value="Upload">
+    </form>
+  </div>
+
+
+  </div>
+</body>
+
+</html>
