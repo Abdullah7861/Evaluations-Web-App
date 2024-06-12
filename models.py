@@ -25,13 +25,15 @@ class User(db.Model):
     password = db.Column(db.String)
     
 class Images(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement = True)
+    character = db.Column(db.Text, nullable=False)
     first_image = db.Column(db.Text, nullable = False)
     second_image = db.Column(db.Text, nullable = False)
 
 class Evaluations(db.Model):
     image_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, primary_key=True)
+    character = db.Column(db.Text, nullable=False)
     criteria_1 = db.Column(db.Integer)
     criteria_2 = db.Column(db.Integer)
     criteria_3 = db.Column(db.Integer)
@@ -42,6 +44,9 @@ class Evaluations(db.Model):
     criteria_8 = db.Column(db.Integer)
     criteria_9 = db.Column(db.Integer)
     criteria_10 = db.Column(db.Integer)
+    Score = db.Column(db.Integer)
+    Substroke = db.Column(db.Integer)
+    
 
 
 class Eval_Count(db.Model):

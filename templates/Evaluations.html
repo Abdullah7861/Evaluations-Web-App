@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Image Evaluation Page</title>
+  <title>Evaluation Page</title>
   <style>
     /* CSS styles for the images */
     /* CSS styles for the images */
@@ -73,7 +73,7 @@ input[type="radio"] {
 .criteria {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   margin-bottom: 10px;
 }
 
@@ -81,18 +81,29 @@ input[type="radio"] {
   font-weight: bold;
   font-size: 16px;
   color: #333;
-  
 }
 
 .criteria-input {
-  margin-right: 5px;
+  margin:5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
+.criteria-input-hidden {
+  margin:5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  visibility: hidden;
+}
+
+.criteria-input-numeric {
+  width: 80px;
+}
 .criteria-inputs{
   margin: 3px;
   padding: 2px;
-  
   border-bottom: #333 solid 1px;
+  width:450px
 }
 
 .profile-container{
@@ -129,6 +140,11 @@ a{
   cursor: pointer;  
 }
 
+.label-Image{
+font-size: large;
+border-bottom: solid black 2px;
+}
+
 .page-lable{
   display: flex;
   align-items: center;
@@ -141,6 +157,20 @@ a{
   border: black solid 2px;
   border-radius: 5px;
   margin-left: 5px;
+}
+
+.Character_div{
+  display: flex;
+  font-size: xx-large;
+  background-color: #f1f1f1;
+  margin: 10px 10px;
+  width:380px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  border-color: black;
+  padding: 10px;
+  justify-content: center;
 }
 
 button[type="submit"] {
@@ -161,6 +191,7 @@ button[type="submit"] {
     flex-direction: column;
   }
 
+
   .image-container {
     flex-direction: column;
   }
@@ -180,9 +211,9 @@ button[type="submit"] {
 <body>
   <div class="master">
     <div class="page-lable">
-      <h1>Image Evaluation Portal</h1>
-      <h3 >Username: {{Username}}</h3>
-      <h3>Total Evaluations: {{Evaluations}}</h3>
+      <h1>Evaluation Portal</h1>
+      <h3 >Current Evaluation : {{Current}}</h3>
+      <h3>Total Evaluations : {{Evaluations}}</h3>
 
       <button class="link"><a href="previous_evaluation">Previous</a></button>
       <button class="link"><a href="home">Home</a></button>
@@ -193,122 +224,117 @@ button[type="submit"] {
     <div class="criteria-container">
       <form action="/post_evaluations" method="POST">
         <div class="criteria">
-          <label class="criteria-label">Shape (Formation) Overall</label>
+          <label class="criteria-label">Direction of Writing</label>
           <div class="criteria-inputs">
-            <label>Perfect</label>
+            <label>Correct</label>
             <input class="criteria-input" type="radio" name="criteria1" value="1" required>
-            <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria1" value="2">
-            <label>Average</label>
-            <input class="criteria-input" type="radio" name="criteria1" value="3" checked>
-            <label>Just Ok</label>
-            <input class="criteria-input" type="radio" name="criteria1" value="4">
-            <label>Wrong</label>
-            <input class="criteria-input" type="radio" name="criteria1" value="5">
+            <label>Partially Correct</label>
+            <input class="criteria-input" type="radio" name="criteria1" value="2"  checked>
+            <label>Incorrect</label>
+            <input class="criteria-input" type="radio" name="criteria1" value="3">
           </div>
         </div>
         <div class="criteria">
-          <label class="criteria-label">Shape of Individual Substrokes</label>
+          <label class="criteria-label">Shape (Formation) Overall</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria2" value="1" required>
             <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria2" value="2">
+            <input class="criteria-input" type="radio" name="criteria2" value="2"  >
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria2" value="3" checked>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria2" value="4">
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria2" value="5">
+          </div>
+         
+        </div>
+        
+        <div class="criteria">
+          <label class="criteria-label">Readability</label>
+          <div class="criteria-inputs">
+            <label>Perfect</label>
+            <input class="criteria-input" type="radio" name="criteria3" value="1" required>
+            <label>Good</label>
+            <input class="criteria-input" type="radio" name="criteria3" value="2"  >
+            <label>Average</label>
+            <input class="criteria-input" type="radio" name="criteria3" value="3" checked>
+            <label>Just Ok</label>
+            <input class="criteria-input" type="radio" name="criteria3" value="4">
+            <label>Incorrect</label>
+            <input class="criteria-input" type="radio" name="criteria3" value="5">
+          </div>
+        </div>
+        <div class="criteria">
+          <label class="criteria-label">Order of Substrokes</label>
+          <div class="criteria-inputs">
+            <label>Correct</label>
+            <input class="criteria-input" type="radio" name="criteria4" value="1" required>
+            <label>Partially Correct</label>
+            <input class="criteria-input" type="radio" name="criteria4" value="2"  checked>
+            <label>Incorrect</label>
+            <input class="criteria-input" type="radio" name="criteria4" value="3">
           </div>
         </div>
         <div class="criteria">
           <label class="criteria-label">Proportion</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
-            <input class="criteria-input" type="radio" name="criteria3" value="1" required>
-            <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria3" value="2">
-            <label>Average</label>
-            <input class="criteria-input" type="radio" name="criteria3" value="3" checked>
-            <label>Just Ok</label>
-            <input class="criteria-input" type="radio" name="criteria3" value="4">
-            <label>Wrong</label>
-            <input class="criteria-input" type="radio" name="criteria3" value="5">
-          </div>
-        </div>
-        <div class="criteria">
-          <label class="criteria-label">Readability</label>
-          <div class="criteria-inputs">
-            <label>Perfect</label>
-            <input class="criteria-input" type="radio" name="criteria4" value="1" required>
-            <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria4" value="2">
-            <label>Average</label>
-            <input class="criteria-input" type="radio" name="criteria4" value="3" checked>
-            <label>Just Ok</label>
-            <input class="criteria-input" type="radio" name="criteria4" value="4">
-            <label>Wrong</label>
-            <input class="criteria-input" type="radio" name="criteria4" value="5">
-          </div>
-        </div>
-        <div class="criteria">
-          <label class="criteria-label">Proportion w.r.t. Baseline</label>
-          <div class="criteria-inputs">
-            <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria5" value="1" required>
             <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria5" value="2">
+            <input class="criteria-input" type="radio" name="criteria5" value="2"  >
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria5" value="3" checked>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria5" value="4">
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria5" value="5">
           </div>
-        </div>
+        </div>  
         <div class="criteria">
-          <label class="criteria-label">Order of Substrokes</label>
+          <label class="criteria-label">Proportion w.r.t. Baseline</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria6" value="1" required>
             <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria6" value="2">
+            <input class="criteria-input" type="radio" name="criteria6" value="2"  >
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria6" value="3" checked>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria6" value="4">
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria6" value="5">
           </div>
         </div>
         <div class="criteria">
-          <label class="criteria-label">Relevance of Substrokes</label>
+          <label class="criteria-label">Shape of Individual Substrokes</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria7" value="1" required>
             <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria7" value="2">
+            <input class="criteria-input" type="radio" name="criteria7" value="2"  >
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria7" value="3" checked>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria7" value="4">
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria7" value="5">
           </div>
         </div>
+       
         <div class="criteria">
-          <label class="criteria-label">Direction of Writing</label>
+          <label class="criteria-label">Relevance of Substrokes</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria8" value="1" required>
             <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria8" value="2">
+            <input class="criteria-input" type="radio" name="criteria8" value="2"  >
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria8" value="3" checked>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria8" value="4">
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria8" value="5">
           </div>
         </div>
@@ -318,12 +344,12 @@ button[type="submit"] {
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria9" value="1" required>
             <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria9" value="2">
+            <input class="criteria-input" type="radio" name="criteria9" value="2"  >
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria9" value="3" checked>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria9" value="4">
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria9" value="5">
           </div>
         </div>
@@ -333,17 +359,51 @@ button[type="submit"] {
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria10" value="1" required>
             <label>Good</label>
-            <input class="criteria-input" type="radio" name="criteria10" value="2">
+            <input class="criteria-input" type="radio" name="criteria10" value="2"  >
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria10" value="3" checked>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria10" value="4">
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria10" value="5">
+          </div>
+        </div>
+        <div class="criteria">
+          <label class="criteria-label">Count of Substrokes</label>
+          <div class="criteria-inputs">
+            <label>Correct</label>
+            <input class="criteria-input" type="radio" name="Substrokes" value="1" required>
+            <label>Partially Correct</label>
+            <input class="criteria-input" type="radio" name="Substrokes" value="2"  checked>
+            <label>Incorrect</label>
+            <input class="criteria-input" type="radio" name="Substrokes" value="3">
+          </div>
+        </div>
+        <label class="criteria-label">Overall Score</label>
+        <div class="criteria">
+          <div class="criteria-inputs">
+          <label >Score</label>
+          <input type="number" min="0" max="10" class="criteria-input-numeric"    list="scorevalues" name="Score" placeholder="Select" required value=5> 
+          <datalist id="scorevalues">
+            <option value="1">
+            <option value="2">
+            <option value="3">
+            <option value="4">
+            <option value="5">
+            <option value="6">
+            <option value="7">
+            <option value="8">
+            <option value="9">
+            <option value="10">
+          </datalist>
           </div>
         </div>
        
         <button type="submit" class="button">Submit</button>
+        
+        <label>  Next Picture Id </label>
+        <input type="number" min = "0" max = {{total_pictures}} class="criteria-input-numeric" name="Next_Eval" required value={{Next}}> 
+        
         <!-- Add more criteria as needed -->
       </form>
 
@@ -352,12 +412,16 @@ button[type="submit"] {
 
     
     <div class="image-container">
+
+      <div class="Character_div">
+        Character: {{current_character}}
+      </div>
       
       <img class="image" src={{image1}} alt="Your First Image">
-    
+      <label class="label-Image"> Writing Direction</label>
     
       <img class="image" src={{image2}} alt="Your Second Image">
-      
+      <label class="label-Image"> Writing Trajectory</label>
       
     
     </div>

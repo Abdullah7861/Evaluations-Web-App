@@ -1,16 +1,96 @@
-<!DOCTYPE html>
+wn<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+   button[type="submit"] {
+  width: 120px;
+  height: 50px;
+  background-color: royalblue;
+  font-size: 16px;
+  font-family: Calibri;
+  color: whitesmoke;
+  border-radius: 5px;
+  border-style: hidden;
+  cursor: pointer;
+  margin: 10px;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+    font-family: Calibri;
+    margin: 0;
+}
+form{
+    align-self: center;
+    font-family: Calibri;
+    font-size: large;
+}
+.master-container {
+  display: flex;
+  justify-content:center;
+  align-items: flex-start;
+}
+h3{
+    font-family: Calibri;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 20px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  border: black solid 2px;
+  width: 500px;
+  height: 300px;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+p{
+    font-family: Calibri;
+    font-size: large;
+
+}
+    </style>
 </head>
 <body>
     <h1>Evaluation Portal</h1>
-    <p>This portal is for evaluating the Urdu Calligraphy Images</p>
+    
+    <div class="master-container">
+        <div class="container">
+            <h2>About</h2>            
+            <p>This portal is for evaluating the Urdu Calligraphy Images</p>
+        
+  
+        </div>
+        
+        <div class="container">
+            <h2>Profile</h2>
+            <h3 >Username: {{Username}}</h3>
+            <h3>Total Evaluations: {{Evaluations}}</h3>
+        </div>
+    </div>
+    <div class="form-container">
     <form action="/evaluations" method="GET">
-        <button type="submit">Go to Route</button>
+        <button type="submit">Start Evaluating</button>
     </form>
+    <form action="/logout" method="GET">
+        <button type="submit">Sign out</button>
+    </form>
+</div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Image Evaluation Page</title>
+  <title>Evaluation Page</title>
   <style>
     /* CSS styles for the images */
     /* CSS styles for the images */
@@ -73,7 +73,7 @@ input[type="radio"] {
 .criteria {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   margin-bottom: 10px;
 }
 
@@ -129,6 +129,9 @@ a{
   cursor: pointer;  
 }
 
+.criteria-input-numeric {
+  width: 80px;
+}
 .page-lable{
   display: flex;
   align-items: center;
@@ -153,6 +156,20 @@ button[type="submit"] {
   border-radius: 5px;
   border-style: hidden;
   cursor: pointer;
+}
+
+.Character_div{
+  display: flex;
+  font-size: xx-large;
+  background-color: #f1f1f1;
+  margin: 10px 10px;
+  width:380px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  border-color: black;
+  padding: 10px;
+  justify-content: center;
 }
 
 /* Media query for responsive design */
@@ -180,8 +197,8 @@ button[type="submit"] {
 <body>
   <div class="master">
     <div class="page-lable">
-      <h1>Image Evaluation Portal</h1>
-      <h3 >Username: {{Username}}</h3>
+      <h1>Evaluation Portal</h1>
+      <h3 >Current Evaluation : {{Current}}</h3>
       <h3>Total Evaluations: {{Evaluations}}</h3>
       <button class="link"><a href="previous_evaluation">Previous</a></button>
       <button class="link"><a href="home">Home</a></button>
@@ -192,22 +209,18 @@ button[type="submit"] {
     <div class="criteria-container">
       <form action="/post_previous_evaluations" method="POST">
         <div class="criteria">
-          <label class="criteria-label">Shape (Formation) Overall</label>
+          <label class="criteria-label">Direction of Writing</label>
           <div class="criteria-inputs">
-            <label>Perfect</label>
+            <label>Correct</label>
             <input class="criteria-input" type="radio" name="criteria1" value="1" required {% if list.criteria_1 == 1 %} checked {%endif%}>
-            <label>Good</label>
+            <label>Partially Correct</label>
             <input class="criteria-input" type="radio" name="criteria1" value="2" {% if list.criteria_1 == 2 %} checked {%endif%}>
-            <label>Average</label>
+            <label>InCorrect</label>
             <input class="criteria-input" type="radio" name="criteria1" value="3" {% if list.criteria_1 == 3 %} checked {%endif%}>
-            <label>Just Ok</label>
-            <input class="criteria-input" type="radio" name="criteria1" value="4" {% if list.criteria_1 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
-            <input class="criteria-input" type="radio" name="criteria1" value="5" {% if list.criteria_1 == 5 %} checked {%endif%}>
           </div>
         </div>
         <div class="criteria">
-          <label class="criteria-label">Shape of Individual Substrokes</label>
+          <label class="criteria-label">Shape (Formation) Overall</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria2" value="1" required {% if list.criteria_2 == 1 %} checked {%endif%}>
@@ -217,12 +230,13 @@ button[type="submit"] {
             <input class="criteria-input" type="radio" name="criteria2" value="3" {% if list.criteria_2 == 3 %} checked {%endif%}>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria2" value="4" {% if list.criteria_2 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria2" value="5" {% if list.criteria_2 == 5 %} checked {%endif%}>
+          
           </div>
         </div>
         <div class="criteria">
-          <label class="criteria-label">Proportion</label>
+          <label class="criteria-label">Readability</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria3" value="1" required {% if list.criteria_3 == 1 %} checked {%endif%}>
@@ -232,42 +246,41 @@ button[type="submit"] {
             <input class="criteria-input" type="radio" name="criteria3" value="3" {% if list.criteria_3 == 3 %} checked {%endif%}>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria3" value="4" {% if list.criteria_3 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
-            <input class="criteria-input" type="radio" name="criteria3" value="5" {% if list.criteria_3 == 5 %} checked {%endif%}>
+            <label>Incorrect</label>
+            <input class="criteria-input" type="radio" name="criteria3" value="5" {% if list.criteria_3 == 5 %} checked {%endif%}>      
           </div>
+    
         </div>
         <div class="criteria">
-          <label class="criteria-label">Readability</label>
+          <label class="criteria-label">Order of Substrokes</label>
           <div class="criteria-inputs">
-            <label>Perfect</label>
+            <label>Correct</label>
             <input class="criteria-input" type="radio" name="criteria4" value="1" required {% if list.criteria_4 == 1 %} checked {%endif%}>
-            <label>Good</label>
+            <label>Partially Correct</label>
             <input class="criteria-input" type="radio" name="criteria4" value="2" {% if list.criteria_4 == 2 %} checked {%endif%}>
-            <label>Average</label>
+            <label>InCorrect</label>
             <input class="criteria-input" type="radio" name="criteria4" value="3" {% if list.criteria_4 == 3 %} checked {%endif%}>
-            <label>Just Ok</label>
-            <input class="criteria-input" type="radio" name="criteria4" value="4" {% if list.criteria_4 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
-            <input class="criteria-input" type="radio" name="criteria4" value="5" {% if list.criteria_4 == 5 %} checked {%endif%}>
-          </div>
+            </div>
         </div>
         <div class="criteria">
-          <label class="criteria-label">Proportion w.r.t. Baseline</label>
+          <label class="criteria-label">Proportion</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria5" value="1" required {% if list.criteria_5 == 1 %} checked {%endif%}>
             <label>Good</label>
             <input class="criteria-input" type="radio" name="criteria5" value="2" {% if list.criteria_5 == 2 %} checked {%endif%}>
             <label>Average</label>
-            <input class="criteria-input" type="radio" name="criteria5" value="3" {% if list.criteria_5 == 3 %} checked {%endif%}>
+            <input class="criteria-input" type="radio" name="criteria5" value="3" {% if list.criteria_5== 3 %} checked {%endif%}>
             <label>Just Ok</label>
-            <input class="criteria-input" type="radio" name="criteria5" value="4"{% if list.criteria_5 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
+            <input class="criteria-input" type="radio" name="criteria5" value="4" {% if list.criteria_5 == 4 %} checked {%endif%}>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria5" value="5" {% if list.criteria_5 == 5 %} checked {%endif%}>
+          
           </div>
+    
         </div>
         <div class="criteria">
-          <label class="criteria-label">Order of Substrokes</label>
+          <label class="criteria-label">Proportion w.r.t. Baseline</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria6" value="1" required {% if list.criteria_6 == 1 %} checked {%endif%}>
@@ -277,27 +290,31 @@ button[type="submit"] {
             <input class="criteria-input" type="radio" name="criteria6" value="3" {% if list.criteria_6 == 3 %} checked {%endif%}>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria6" value="4" {% if list.criteria_6 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria6" value="5" {% if list.criteria_6 == 5 %} checked {%endif%}>
+          
           </div>
+    
         </div>
         <div class="criteria">
-          <label class="criteria-label">Relevance of Substrokes</label>
+          <label class="criteria-label">Shape of Individual Substrokes</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
-            <input class="criteria-input" type="radio" name="criteria7" value="1" required {% if list.criteria_7 == 1 %} checked {%endif%}>  
+            <input class="criteria-input" type="radio" name="criteria7" value="1" required {% if list.criteria_7 == 1 %} checked {%endif%}>
             <label>Good</label>
             <input class="criteria-input" type="radio" name="criteria7" value="2" {% if list.criteria_7 == 2 %} checked {%endif%}>
             <label>Average</label>
             <input class="criteria-input" type="radio" name="criteria7" value="3" {% if list.criteria_7 == 3 %} checked {%endif%}>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria7" value="4" {% if list.criteria_7 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria7" value="5" {% if list.criteria_7 == 5 %} checked {%endif%}>
+          
           </div>
+    
         </div>
         <div class="criteria">
-          <label class="criteria-label">Direction of Writing</label>
+          <label class="criteria-label">Relevance of Substrokes</label>
           <div class="criteria-inputs">
             <label>Perfect</label>
             <input class="criteria-input" type="radio" name="criteria8" value="1" required {% if list.criteria_8 == 1 %} checked {%endif%}>
@@ -307,9 +324,11 @@ button[type="submit"] {
             <input class="criteria-input" type="radio" name="criteria8" value="3" {% if list.criteria_8 == 3 %} checked {%endif%}>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria8" value="4" {% if list.criteria_8 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria8" value="5" {% if list.criteria_8 == 5 %} checked {%endif%}>
+          
           </div>
+    
         </div>
         <div class="criteria">
           <label class="criteria-label">Proportion & Shape of Individual Characters</label>
@@ -322,9 +341,11 @@ button[type="submit"] {
             <input class="criteria-input" type="radio" name="criteria9" value="3" {% if list.criteria_9 == 3 %} checked {%endif%}>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria9" value="4" {% if list.criteria_9 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
+            <label>Incorrect</label>
             <input class="criteria-input" type="radio" name="criteria9" value="5" {% if list.criteria_9 == 5 %} checked {%endif%}>
+          
           </div>
+    
         </div>
         <div class="criteria">
           <label class="criteria-label">Joins of Characters</label>
@@ -337,8 +358,38 @@ button[type="submit"] {
             <input class="criteria-input" type="radio" name="criteria10" value="3" {% if list.criteria_10 == 3 %} checked {%endif%}>
             <label>Just Ok</label>
             <input class="criteria-input" type="radio" name="criteria10" value="4" {% if list.criteria_10 == 4 %} checked {%endif%}>
-            <label>Wrong</label>
-            <input class="criteria-input" type="radio" name="criteria10" value="5" {% if list.criteria_10 == 5 %} checked {%endif%}>
+            <label>Incorrect</label>
+            <input class="criteria-input" type="radio" name="criteria10" value="5" {% if list.criteria_10 == 5 %} checked {%endif%}>     
+          </div>
+        </div>
+        <div class="criteria">
+          <label class="criteria-label">Count of Substrokes</label>
+          <div class="criteria-inputs">
+            <label>Correct</label>
+            <input class="criteria-input" type="radio" name="Substrokes" value="1" required {% if list.Substroke == 1 %} checked {%endif%}>
+            <label>Partially Correct</label>
+            <input class="criteria-input" type="radio" name="Substrokes" value="2"  {% if list.Substroke == 2 %} checked {%endif%}>
+            <label>Incorrect</label>
+            <input class="criteria-input" type="radio" name="Substrokes" value="3" {% if list.Substroke == 3 %} checked {%endif%}>
+          </div>
+        </div>
+        <div class="criteria">
+          <label class="criteria-label">Overall Score</label>
+          <div class="criteria-inputs">
+          <label >Score</label>
+          <input type="number" min="0" max="10" class="criteria-input-numeric"    list="scorevalues" name="Score" placeholder="Select" required value={{list.Score}}> 
+          <datalist id="scorevalues">
+            <option value="1">
+            <option value="2">
+            <option value="3">
+            <option value="4">
+            <option value="5">
+            <option value="6">
+            <option value="7">
+            <option value="8">
+            <option value="9">
+            <option value="10">
+          </datalist>
           </div>
         </div>
        
@@ -351,11 +402,16 @@ button[type="submit"] {
 
     
     <div class="image-container">
+
+      <div class="Character_div">
+        Character: {{current_character}}
+      </div>
       
       <img class="image" src={{image1}} alt="Your First Image">
-    
+      <label class="label-Image"> Writing Direction</label>
     
       <img class="image" src={{image2}} alt="Your Second Image">
+      <label class="label-Image"> Writing Trajectory</label>
       
     
     </div>
